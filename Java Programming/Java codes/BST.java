@@ -54,17 +54,18 @@ public static void inorder(Node root){
 public static Node delete(Node root, int val){
 
     if(root.data < val){
-        root.right = delete(root.left, val);
+        root.right = delete(root.right, val);
     }
     else if(root.data > val){
         root.left = delete(root.left, val);
     }else{
 
-
+        // case 1 - leaf node
         if(root.left == null && root.right == null){
             return null;
         }
 
+        // case 2 single child
         if(root.left == null){
            return root.right; 
         }
@@ -72,6 +73,7 @@ public static Node delete(Node root, int val){
             return root.left;
         }
 
+        // case 3 both children
         Node IS = findInorderSuccessor(root.right);
         root.data = IS.data;
         root.right = delete(root.right, IS.data);
@@ -88,21 +90,37 @@ public static Node findInorderSuccessor(Node root){
     return root;
 }
 
+public static void printInRange(Node root, int k1, int k2){
+
+    if(root == null){
+        return;
+    }
+    if(root.data>= k1 && root.data <=k2){
+        printInRange(root.left, k1, k2);
+        System.out.print(root.data+" ");
+        printInRange(root.right, k1, k2);
+    }
+
+    else if(root.data < k1){
+        printInRange(root.right, k1, k2);
+    }else{
+        printInRange(root.left, k1, k2);
+    }
+}
+
     public static void main(String args[]){
 
        int values[] = {8,5,3,1,4,6,10,11,14};
        Node root = null;
        
-       for (int i = 1; i <values.length; i++) {
+       for (int i = 0; i <values.length; i++) {
         root = insert(root, values[i]);
        }
 
        inorder(root);
        System.out.println();
 
-       root = delete(root, 5);
-
-       inorder(root);
+       printInRange(root, 5, 12);
 
     }
 
