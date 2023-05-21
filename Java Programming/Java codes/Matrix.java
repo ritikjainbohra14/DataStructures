@@ -28,15 +28,12 @@ public class Matrix {
         }
         //right
         for (int i = startrow+1; i <= endrow; i++) {
-            if(startrow==endrow){
-               break;
-            }
             System.out.print(matrix[i][endcol] + " ");
         }
 
         //bottom
         for (int i = endcol-1; i >=startcol ; i--) {
-            if(startcol==endcol){
+            if(startrow==endrow){
                break;
             }
             System.out.print(matrix[endrow][i]+ " ");
@@ -44,6 +41,9 @@ public class Matrix {
 
         //left
         for (int i = endrow-1; i > startrow+1; i--) {
+            if(startcol==endcol){
+                break;
+            }
             System.out.print(matrix[i][startcol] + " ");
         }
 
