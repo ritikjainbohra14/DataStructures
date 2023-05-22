@@ -1,3 +1,5 @@
+import java.util.*;
+
 public class BST {
 
    static class Node{
@@ -108,19 +110,93 @@ public static void printInRange(Node root, int k1, int k2){
     }
 }
 
+
+public static void printPath(ArrayList<Integer> path){
+    for (int i = 0; i < path.size(); i++) {
+        System.out.print(path.get(i) + "->");
+    }
+
+    System.out.println();
+}
+
+public static void printRoot2Leaf(Node root, ArrayList<Integer> path){
+
+    if(root == null){
+        return;
+    }
+
+    path.add(root.data);
+
+    if(root.left == null && root.right==null){
+        printPath(path);
+    }
+    printRoot2Leaf(root.left, path);
+    printRoot2Leaf(root.right, path);
+
+    path.remove(path.size()-1);
+
+}
+
+public static boolean isValidBST(Node root, Node min, Node max){
+    if(root == null){
+        return true;
+    }
+
+    if(min!= null && root.data <= min.data){
+        return false;
+    }
+
+    else if(max != null && root.data >= max.data){
+        return false;
+    }
+
+    return isValidBST(root.left, min, root) && isValidBST(root.right, root, max);
+}
+
+public static Node mirrorBst(Node root){
+    if(root==null){
+        return null;
+    }
+
+    Node leftS = mirrorBst(root.left);
+    Node rightS = mirrorBst(root.right);
+
+    root.right = leftS;
+    root.left = rightS;
+
+    return root;
+}
+
+public static void preorder(Node root){
+    if(root  == null){
+        return;
+    }
+
+    System.out.print(root.data + " ");
+    preorder(root.left);
+    preorder(root.right);
+}
+
     public static void main(String args[]){
 
-       int values[] = {8,5,3,1,4,6,10,11,14};
+       int values[] = {8,5,10,3,6,11};
        Node root = null;
        
        for (int i = 0; i <values.length; i++) {
         root = insert(root, values[i]);
        }
 
-       inorder(root);
+       preorder(root);
        System.out.println();
 
-       printInRange(root, 5, 12);
+    //    if(isValidBST(root, null, null)){
+    //     System.out.println("Is valid");
+    //    }else{
+    //     System.out.println("not valid");
+    //    }
+
+    root = mirrorBst(root);
+    preorder(root);
 
     }
 
