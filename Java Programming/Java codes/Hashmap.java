@@ -32,6 +32,22 @@ public class Hashmap {
       return false;
     }
   }
+
+  public static String getStart(HashMap<String, String> tickets){
+    HashMap<String, String> revMap = new HashMap<>();
+
+    for (String key : tickets.keySet()) {
+      revMap.put(tickets.get(key), key);
+    }
+
+    for (String key :tickets.keySet() ) {
+      if(!revMap.containsKey(key)){
+        return key;
+      }
+    }
+
+    return null;
+  }
     public static void main(String args[]){
       //create
     //   HashMap<String, Integer> hm = new HashMap<>();
@@ -87,10 +103,28 @@ public class Hashmap {
 
 
         // ******************************Valid Anagram ***************************//
-          String s = "race";
-          String t = "care";
+          // String s = "race";
+          // String t = "care";
 
-          System.out.println(isAnangram(s, t));
+          // System.out.println(isAnangram(s, t));
+
+           //*****************Find Itinary from Tickets*******************//
+
+           HashMap<String, String> tickets = new HashMap<>();
+
+           tickets.put("Chennai", "Bengaluru");
+           tickets.put("Mumbai", "Delhi");
+           tickets.put("Goa", "Chennai");
+           tickets.put("Delhi", "Goa");
+
+
+
+           String start = getStart(tickets);
+           System.out.print(start);
+           for (String keys : tickets.keySet()) {
+            System.out.print("-->" + tickets.get(start));
+            start = tickets.get(start);
+           }
         
     }    
 }
