@@ -97,8 +97,6 @@ public class trie {
         }
 
         root.freq = -1;
-
-        System.out.println(root.children[4]);
         findPrefix(root, "" );
 
 
