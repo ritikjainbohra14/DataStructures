@@ -63,6 +63,22 @@ public class trie {
         return false;
     }
 
+    public static void findPrefix(Node root, String ans){
+        if(root == null){
+            return;
+        }
+
+        if(root.freq == 1){
+            System.out.println(ans);
+            return;
+        }
+        for (int i = 0; i < 26; i++) {
+            if(root.children[i] != null){
+                findPrefix(root.children[i], ans+(char)(i+'a'));
+            }
+        }
+    }
+
     public static void main(String args[]){
         // String arr[] = {"i", "like", "sam", "samsung", "mobile", "ice"};
 
@@ -79,6 +95,12 @@ public class trie {
         for (int i = 0; i < arr.length; i++) {
             insert(arr[i]);
         }
+
+        root.freq = -1;
+
+        System.out.println(root.children[4]);
+        findPrefix(root, "" );
+
 
 
 
