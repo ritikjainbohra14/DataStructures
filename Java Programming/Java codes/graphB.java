@@ -84,6 +84,24 @@ public class graphB {
         }
         
     }
+
+    public static boolean hasPath(ArrayList<Edge>[] graph, int src, int dest, boolean visted[]){
+        if(src == dest){
+            return true;
+        }
+
+        visted[src] = true;
+
+        for (int i = 0; i < graph[src].size(); i++) {
+            Edge e = graph[src].get(i);
+
+            if(!visted[e.dest] && hasPath(graph, e.dest, dest, visted)){
+                return true;
+            }
+        }
+
+        return false;
+    }
     
     public static void main(String args[]){    
 
@@ -101,7 +119,11 @@ public class graphB {
        ArrayList<Edge>[] graph = new ArrayList[V];
 
        createGraph(graph);
-       dfs(graph, 0, new boolean[graph.length]);
+    //    dfs(graph, 0, new boolean[graph.length]);
+
+    System.out.println(hasPath(graph, 0, 10, new boolean[V]));    
+    
+    
 
 
 

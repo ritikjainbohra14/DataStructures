@@ -13,47 +13,60 @@ public class  GreedyTech {
             profit = p;
         }
     }
+
+    public static int buses(int mat[][]) {
+        Arrays.sort(mat, Comparator.comparingDouble(o -> o[1]));
+
+        int count = 0;
+        for(int i=0; i<mat.length-1; i++) {
+            if(mat[i][1]>=mat[i+1][0]) {
+                mat[i+1][0]=mat[i][0];
+                count++;
+            }
+        }
+        return mat.length-count;
+    }
     public static void main(String args[]){
 
 
 // *****************Activity Selection ***************************        
-        // int start[] = {1,3,0,5,8,5};
-        // int end[] = {2,4,6,7,9,9};
+        int start[] = {10,34,56,100,105,115};
+        int end[] = {17,42,65,101,110,119};
 
 
-        // int activities[][] = new int[start.length][3];
-        // for (int i = 0; i < start.length; i++) {
-        //     activities[i][0] = i;
-        //     activities[i][1] = start[i];
-        //     activities[i][2] = end[i];
-        // }
+        int activities[][] = new int[start.length][3];
+        for (int i = 0; i < start.length; i++) {
+            activities[i][0] = i;
+            activities[i][1] = start[i];
+            activities[i][2] = end[i];
+        }
 
-        // Arrays.sort(activities, Comparator.comparingDouble(o -> o[2]));
+        Arrays.sort(activities, Comparator.comparingDouble(o -> o[2]));
 
 
-        // //end time basis sorted
-        // int maxAct = 0;
-        // ArrayList<Integer> ans = new ArrayList<>();
+        //end time basis sorted
+        int maxAct = 0;
+        ArrayList<Integer> ans = new ArrayList<>();
 
-        // //1st activity
-        // maxAct = 1;
-        // // ans.add(0);
-        // ans.add(activities[0][0]);
+        //1st activity
+        maxAct = 1;
+        // ans.add(0);
+        ans.add(activities[0][0]);
 
-        // int lastEnd = activities[0][2];
-        // for (int i = 1; i < end.length; i++) {
-        //     if(activities[i][1] >= lastEnd){
-        //         lastEnd = activities[i][2];
-        //         maxAct++;
-        //         ans.add(activities[i][0]);
-        //     }
-        // }
+        int lastEnd = activities[0][2];
+        for (int i = 1; i < end.length; i++) {
+            if(activities[i][1] >= lastEnd){
+                lastEnd = activities[i][2];
+                maxAct++;
+                ans.add(activities[i][0]);
+            }
+        }
 
-        // System.out.println(maxAct);
+        System.out.println(maxAct);
 
-        // for (int i = 0; i < ans.size(); i++) {
-        //     System.out.println("A"+ans.get(i));
-        // }
+        for (int i = 0; i < ans.size(); i++) {
+            System.out.println("A"+ans.get(i));
+        }
 
 //****************************Knapsack Problem **************** */
     // int val[] = {60,100,120};
@@ -184,44 +197,64 @@ public class  GreedyTech {
 // System.out.println();
 
 // ***************************cHOCOLA PROBLEM************************8
-int n = 4; int m = 6;
-Integer costVer[] = {2,1,3,1,4};
-Integer costHor[] = {4,1,2};
+// int n = 4; int m = 6;
+// Integer costVer[] = {2,1,3,1,4};
+// Integer costHor[] = {4,1,2};
 
-Arrays.sort(costVer, Collections.reverseOrder());
-Arrays.sort(costHor, Collections.reverseOrder());
+// Arrays.sort(costVer, Collections.reverseOrder());
+// Arrays.sort(costHor, Collections.reverseOrder());
 
-int h =0, v = 0;
-int hp = 1, vp = 1;
-int cost = 0;
+// int h =0, v = 0;
+// int hp = 1, vp = 1;
+// int cost = 0;
 
-while (h < costHor.length && v < costVer.length) {
-    // vertical cost < hor cost
-    if(costVer[v] <= costHor[h]){
-        cost += (costHor[h] * vp);
-        hp++;
-        h++;
-    }else{
-        cost += (costVer[v] * hp);
-        vp++;
-        v++;
-    }
+// while (h < costHor.length && v < costVer.length) {
+//     // vertical cost < hor cost
+//     if(costVer[v] <= costHor[h]){
+//         cost += (costHor[h] * vp);
+//         hp++;
+//         h++;
+//     }else{
+//         cost += (costVer[v] * hp);
+//         vp++;
+//         v++;
+//     }
     
-}
+// }
 
-while (h < costHor.length) {
-    cost += (costHor[h] * vp);
-    hp++;
-    h++;
-}
+// while (h < costHor.length) {
+//     cost += (costHor[h] * vp);
+//     hp++;
+//     h++;
+// }
 
-while (v < costVer.length) {
-    cost += (costVer[v] * hp);
-    vp++;
-    v++;
-}
+// while (v < costVer.length) {
+//     cost += (costVer[v] * hp);
+//     vp++;
+//     v++;
+// }
 
-System.out.println(cost);
+// System.out.println(cost);
+
+int arr[][] = {
+                {10,17},
+                {34,42},
+                {56,65},
+                {100,101},
+                {105,110},
+                {115,119}
+                    };
+
+
+System.out.println(buses(arr));
+
+
+
 
     }
 }
+
+
+
+
+
