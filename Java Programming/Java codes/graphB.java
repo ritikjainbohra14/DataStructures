@@ -60,20 +60,52 @@ public class graphB {
 
         // graph[6].add(new Edge(6, 2, 1));
 
-        graph[0].add(new Edge(0, 1));
-        graph[0].add(new Edge(0, 2));
-        graph[0].add(new Edge(0, 3));
+        // graph[0].add(new Edge(0, 1));
+        // graph[0].add(new Edge(0, 2));
+        // graph[0].add(new Edge(0, 3));
 
-        graph[1].add(new Edge(1, 0));
-        graph[1].add(new Edge(1, 2));
+        // graph[1].add(new Edge(1, 0));
+        // graph[1].add(new Edge(1, 2));
 
-        graph[2].add(new Edge(2, 0));
-        graph[2].add(new Edge(2, 1));
+        // graph[2].add(new Edge(2, 0));
+        // graph[2].add(new Edge(2, 1));
 
-        graph[3].add(new Edge(3, 0));
-        graph[3].add(new Edge(3, 4));
+        // graph[3].add(new Edge(3, 0));
+        // graph[3].add(new Edge(3, 4));
 
-        graph[4].add(new Edge(4, 3));
+        // graph[4].add(new Edge(4, 3));
+
+        // graph[0].add(new Edge(0, 1));
+        // graph[0].add(new Edge(0, 2));
+
+        // graph[1].add(new Edge(1, 0));
+        // graph[1].add(new Edge(1, 3));
+
+        // graph[2].add(new Edge(2, 0));
+        // graph[2].add(new Edge(2, 4));
+
+        // graph[3].add(new Edge(3, 1));
+        // //graph[3].add(new Edge(3, 4));
+
+        // graph[4].add(new Edge(4, 2));
+        //graph[4].add(new Edge(4, 3));
+
+
+        //CYCLEIN DIRECTED GRAPH
+        // graph[0].add(new Edge(0,2));
+
+        // graph[1].add(new Edge(1, 0));
+
+        // graph[2].add(new Edge(2, 3));
+
+        // graph[3].add(new Edge(3, 0));
+
+        graph[0].add(new Edge(0,1));
+        graph[0].add(new Edge(0,2));
+
+        graph[1].add(new Edge(1, 3));
+
+        graph[2].add(new Edge(2, 3));
     }
 
     public static void bfs(ArrayList<Edge>[] graph ){
@@ -173,7 +205,7 @@ public class graphB {
                
             }
 
-            //case3
+            //case1
             else if(vis[e.dest] && e.dest != par){
                 return true;
             }
@@ -181,6 +213,80 @@ public class graphB {
             //case 2 ---- do nothing
         }
 
+        return false;
+    }
+
+    public static boolean isBipartite(ArrayList<Edge>[] graph ){
+        int[] color = new int[graph.length];
+
+        for (int i = 0; i < color.length; i++) {
+            color[i] = -1;
+        }
+
+        Queue<Integer> q = new LinkedList<>();
+
+        for (int i = 0; i < graph.length; i++) {
+            if(color[i] == -1){
+                q.add(i);
+                color[i] = 0;
+                while (!q.isEmpty()) {
+                    int curr = q.remove();
+
+                    for (int j = 0; j < graph[curr].size(); j++) {
+                        Edge e = graph[curr].get(j);
+
+                        if(color[e.dest] == -1){
+                            int nextCol = color[curr] == 0 ? 1 :0;
+                            color[e.dest] = nextCol;
+                            q.add(e.dest);
+
+                        }else if(color[e.dest] == color[curr]){
+                            return false;
+                        }
+                    }
+                }
+
+               
+            }
+
+            
+        }
+
+        return true;
+    }
+
+    public static boolean isCycleD(ArrayList<Edge>[] graph){
+        boolean vis[] = new boolean[graph.length];
+        boolean stack[] = new boolean[graph.length];
+
+        for (int i = 0; i < graph.length; i++) {
+            if(!vis[i]){
+                if(isCycleUtil(graph, i, vis, stack)){
+                    return true;
+                }
+            }
+        }
+
+        return false;
+    }
+
+    public static boolean isCycleUtil(ArrayList<Edge>[] graph, int curr, boolean vis[], boolean stack[] ){
+        vis[curr] = true;
+        stack[curr] = true;
+
+        for (int i = 0; i < graph[curr].size(); i++) {
+            Edge e = graph[curr].get(i);
+
+            if(stack[e.dest]){//cycle
+                return true;
+            }
+
+            if(!vis[e.dest] && isCycleUtil(graph, e.dest, vis, stack)){
+                return true;
+            }
+        }
+
+        stack[curr] = false;
         return false;
     }
     
@@ -204,7 +310,7 @@ public class graphB {
 
     // System.out.println(hasPath(graph, 0, 10, new boolean[V]));    
     
-    System.out.println(detectCycle(graph));
+    System.out.println(isCycleD(graph));
 
     
 
