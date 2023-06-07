@@ -100,12 +100,24 @@ public class graphB {
 
         // graph[3].add(new Edge(3, 0));
 
-        graph[0].add(new Edge(0,1));
-        graph[0].add(new Edge(0,2));
+        // graph[0].add(new Edge(0,1));
+        // graph[0].add(new Edge(0,2));
 
-        graph[1].add(new Edge(1, 3));
+        // graph[1].add(new Edge(1, 3));
+
+        // graph[2].add(new Edge(2, 3));
+
+        // Topological Sort Question
 
         graph[2].add(new Edge(2, 3));
+
+        graph[3].add(new Edge(3, 1));
+
+        graph[4].add(new Edge(4, 0));
+        graph[4].add(new Edge(4, 1));
+
+        graph[5].add(new Edge(5, 0));
+        graph[5].add(new Edge(5, 2));
     }
 
     public static void bfs(ArrayList<Edge>[] graph ){
@@ -289,6 +301,35 @@ public class graphB {
         stack[curr] = false;
         return false;
     }
+
+    public static void topologicalSort(ArrayList<Edge>[] graph){
+        boolean vis[] = new boolean[graph.length];
+        Stack<Integer> s = new Stack<>();
+
+        for (int i = 0; i < graph.length; i++) {
+            if(!vis[i]){
+                topSortUtil(graph, i, vis, s);
+            }
+        }
+
+        while (!s.isEmpty()) {
+            System.out.println(s.pop()+" ");
+        }
+
+    }
+
+    public static void topSortUtil(ArrayList<Edge>[] graph, int curr, boolean vis[], Stack s){
+        vis[curr] = true;
+
+        for (int i = 0; i < graph[curr].size(); i++) {
+                Edge e = graph[curr].get(i);
+                if(!vis[e.dest]){
+                    topSortUtil(graph, e.dest, vis, s);
+                }
+        }
+
+        s.push(curr);
+    }
     
     public static void main(String args[]){    
 
@@ -301,7 +342,7 @@ public class graphB {
         //     System.out.println(e.dest);
         // }
 
-       int V = 5;
+       int V = 6;
        
        ArrayList<Edge>[] graph = new ArrayList[V];
 
@@ -310,7 +351,7 @@ public class graphB {
 
     // System.out.println(hasPath(graph, 0, 10, new boolean[V]));    
     
-    System.out.println(isCycleD(graph));
+    topologicalSort(graph);
 
     
 
