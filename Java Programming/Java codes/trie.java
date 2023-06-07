@@ -79,6 +79,38 @@ public class trie {
         }
     }
 
+    public static boolean startsWith(String prefix){
+        Node curr= root;
+
+        for (int i = 0; i < prefix.length(); i++) {
+            int idx = prefix.charAt(i) - 'a';
+
+            if(curr.children[idx] == null){
+                return false;
+            }
+
+            curr = curr.children[idx];
+        }
+
+        return true; 
+    }
+
+    public static int countNodes(Node root){
+        if(root == null){
+            return 0;
+        }
+
+        int count = 0;
+        for (int i = 0; i < 26; i++) {
+            if(root.children[i] != null){
+               count += countNodes(root.children[i]);
+            }
+        }
+
+        return count+1;
+    }
+
+    
     public static void main(String args[]){
         // String arr[] = {"i", "like", "sam", "samsung", "mobile", "ice"};
 
@@ -90,14 +122,29 @@ public class trie {
 
         // System.out.println(wordBreak(key));
 
-        String arr[] = {"zebra", "dog", "duck", "dove"};
+        // String arr[] = {"zebra", "dog", "duck", "dove"};
 
-        for (int i = 0; i < arr.length; i++) {
-            insert(arr[i]);
+        // for (int i = 0; i < arr.length; i++) {
+        //     insert(arr[i]);
+        // }
+
+        // root.freq = -1;
+        // findPrefix(root, "" );
+
+        String str = "ababa";
+
+        //suffix
+
+        for (int i = 0; i < str.length(); i++) {
+            String suffix = str.substring(i);
+
+            insert(suffix);
         }
 
-        root.freq = -1;
-        findPrefix(root, "" );
+        System.out.println(countNodes(root));
+
+
+
 
 
 
