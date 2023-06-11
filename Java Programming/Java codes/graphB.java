@@ -153,11 +153,32 @@ public class graphB {
 
         // Bellman Ford Algorithm
 
-        graph[0].add(new Edge(0, 1, 2));
-        graph[0].add(new Edge(0, 2, 4));
+        // graph[0].add(new Edge(0, 1, 2));
+        // graph[0].add(new Edge(0, 2, 4));
 
-        graph[1].add(new Edge(1, 2, -4));
-    
+        // graph[1].add(new Edge(1, 2, -4));
+        
+        // graph[2].add(new Edge(2, 3, 2));
+
+        // graph[3].add(new Edge(3, 4, 4));
+
+        // graph[4].add(new Edge(4, 1, -1));
+
+        // Prims Algorithm
+
+        graph[0].add(new Edge(0,1,10));
+        graph[0].add(new Edge(0,2,15));
+        graph[0].add(new Edge(0,3,30));
+
+        graph[1].add(new Edge(1,0,10));
+        graph[1].add(new Edge(1,3,40));
+
+        graph[2].add(new Edge(2,0,15));
+        graph[2].add(new Edge(2,3,50));
+
+        graph[3].add(new Edge(3, 1, 40));
+        graph[3].add(new Edge(3, 2, 50));
+
     }
 
 
@@ -479,6 +500,76 @@ public class graphB {
 
     }
 
+    public static void bellmanFord(ArrayList<Edge>[] graph, int src){
+        int dis[] = new int[graph.length];
+
+        for (int i = 0; i < dis.length; i++) {
+            if(i != src){
+                dis[i] = Integer.MAX_VALUE;
+            }
+        }
+        int V = graph.length;
+        for (int i = 0; i < V-1; i++) {
+            //edges
+            for (int j = 0; j < graph.length; j++) {
+                for (int j2 = 0; j2 < graph[j].size(); j2++) {
+                    Edge e = graph[j].get(j2);
+
+                    int u = e.src;
+                    int v = e.dest;
+                    int wt = e.wt;
+
+                    if(dis[u] != Integer.MAX_VALUE && dis[u] + wt < dis[v]){
+                        dis[v] = dis[u] + wt;
+                    }
+                }
+            }
+        }
+
+        for (int i = 0; i < dis.length; i++) {
+            System.out.print(dis[i] +" ");
+        }
+    }
+
+    static class Pair2 implements Comparable<Pair2>{
+        int n;
+        int cost;
+
+        public Pair2(int n, int cost){
+            this.n = n;
+            this.cost = cost;
+        }
+
+        @Override
+        public int compareTo(Pair2 p2){
+            return this.cost - p2.cost;
+        }
+    }
+
+    public static void primsAlgo(ArrayList<Edge> graph[]){
+        PriorityQueue<Pair2> pq = new PriorityQueue<>();
+        boolean[] vis = new boolean[graph.length];
+
+        pq.add(new Pair2(0, 0));
+        int finalCost = 0;
+
+        while(!pq.isEmpty()){
+            Pair2 curr = pq.remove();
+
+            if(!vis[curr.n]){
+                vis[curr.n] = true;
+                finalCost += curr.cost;
+                for (int i = 0; i < graph[curr.n].size(); i++) {
+                    Edge e = graph[curr.n].get(i);
+                    pq.add(new Pair2(e.dest, e.wt));
+
+                }
+            }
+        }
+
+        System.out.println(finalCost);
+    }
+
 
     
     public static void main(String args[]){    
@@ -492,7 +583,7 @@ public class graphB {
         //     System.out.println(e.dest);
         // }
 
-       int V = 6;
+       int V = 5;
        
        ArrayList<Edge>[] graph = new ArrayList[V];
 
@@ -507,7 +598,11 @@ public class graphB {
 
     //allpathssrctodestUtil(graph, 5, 1, "");
 
-    dijkstras(graph, 0);
+    //dijkstras(graph, 0);
+
+    //bellmanFord(graph, 0);
+
+    primsAlgo(graph);
 
 
 
