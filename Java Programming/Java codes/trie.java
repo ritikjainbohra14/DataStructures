@@ -110,6 +110,30 @@ public class trie {
         return count+1;
     }
 
+    public static String ans = "";
+
+    public static void wordWithAllPrefix(Node root, StringBuilder temp){
+
+        if(root == null){
+            return;
+        }
+
+        for (int i = 0; i < 26; i++) {
+            if(root.children[i] != null && root.children[i].eow == true){
+                char ch = (char)(i+'a');
+                temp.append(ch);
+                if(temp.length() > ans.length()){
+                    ans = temp.toString();
+                }
+                wordWithAllPrefix(root.children[i], temp);
+                temp.deleteCharAt(temp.length()-1);//BackTrack
+            }
+        }
+       
+
+            
+    }
+
     
 
     
@@ -133,20 +157,27 @@ public class trie {
         // root.freq = -1;
         // findPrefix(root, "" );
 
-        String str = "ababa";
+        // String str = "ababa";
 
-        //suffix
+        // //suffix
 
-        for (int i = 0; i < str.length(); i++) {
-            String suffix = str.substring(i);
+        // for (int i = 0; i < str.length(); i++) {
+        //     String suffix = str.substring(i);
 
-            insert(suffix);
+        //     insert(suffix);
+        // }
+
+        // System.out.println(countNodes(root));
+
+        String words[] = {"a", "banana", "ap","app", "appl","apple","apply"};
+
+        for (int i = 0; i < words.length; i++) {
+            insert(words[i]);
         }
+        
 
-        System.out.println(countNodes(root));
-
-
-
+        wordWithAllPrefix(root, new StringBuilder(""));
+        System.out.println(ans);
 
 
 
