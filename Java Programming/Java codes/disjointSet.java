@@ -83,6 +83,40 @@ public class disjointSet {
         System.out.println(minMST);
     }
 
+    public void helper(int[][] image, int src, int sc,int colot,  boolean[][] vis, int orgCol){
+
+        if(src < 0 || sc<0 || src>=image.length || sc>= image[0].length || vis[src][sc] || image[src][sc] != orgCol ){
+            return; 
+        }
+
+        image[src][sc] = colot;
+        
+        //left
+        helper(image, src, sc-1, colot, vis, orgCol);
+        
+        //right
+        helper(image, src, sc+1, colot, vis, orgCol);
+
+        //up
+        helper(image, src-1, sc, colot, vis, orgCol);
+
+        //down
+        helper(image, src+1, sc, colot, vis, orgCol);
+
+
+    }
+
+    public int[][]  floodFill(int[][] image, int sr, int sc, int color){
+
+        if(image[sr][sc] == color){
+            return image;
+        }
+        boolean vis[][] = new boolean[image.length][image[0].length];
+
+        helper(image, sr, sc, color, vis, image[sr][sc]);
+        return image;
+    }
+
     public static void main(String args[]){
         // init();
         // union(1,3);
