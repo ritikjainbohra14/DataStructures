@@ -25,160 +25,201 @@ public class graphB {
     //     }
     // }
 
-    static void createGraph(ArrayList<Edge> graph[]){
+    // static void createGraph(ArrayList<Edge> graph[]){
+    //     for (int i = 0; i < graph.length; i++) {
+    //         graph[i] = new ArrayList<>();
+    //     }
+
+
+    //     //0-vertex
+
+    //     // graph[0].add(new Edge(0, 1, 1));
+    //     // graph[0].add(new Edge(0, 2, 1));
+
+    //     // //1 vertex
+    //     // graph[1].add(new Edge(1, 0, 1));
+    //     // graph[1].add(new Edge(1, 3, 2));
+
+    //     // //2nd vertex
+    //     // graph[2].add(new Edge(2, 0, 1));
+    //     // graph[2].add(new Edge(2, 4, 1));
+
+    //     // //3rd vertex
+    //     // graph[3].add(new Edge(3, 1, 1));
+    //     // graph[3].add(new Edge(3, 4, 1));
+    //     // graph[3].add(new Edge(3, 5, 1));
+
+
+    //     // //4th vertex
+    //     // graph[4].add(new Edge(4, 2, 1));
+    //     // graph[4].add(new Edge(4, 3, 1));
+    //     // graph[4].add(new Edge(4, 5, 1));
+
+
+    //     // graph[5].add(new Edge(5, 3, 1));
+    //     // graph[5].add(new Edge(5, 4, 1));
+    //     // graph[5].add(new Edge(5, 6, 1));
+
+    //     // graph[6].add(new Edge(6, 2, 1));
+
+    //     // graph[0].add(new Edge(0, 1));
+    //     // graph[0].add(new Edge(0, 2));
+    //     // graph[0].add(new Edge(0, 3));
+
+    //     // graph[1].add(new Edge(1, 0));
+    //     // graph[1].add(new Edge(1, 2));
+
+    //     // graph[2].add(new Edge(2, 0));
+    //     // graph[2].add(new Edge(2, 1));
+
+    //     // graph[3].add(new Edge(3, 0));
+    //     // graph[3].add(new Edge(3, 4));
+
+    //     // graph[4].add(new Edge(4, 3));
+
+    //     // graph[0].add(new Edge(0, 1));
+    //     // graph[0].add(new Edge(0, 2));
+
+    //     // graph[1].add(new Edge(1, 0));
+    //     // graph[1].add(new Edge(1, 3));
+
+    //     // graph[2].add(new Edge(2, 0));
+    //     // graph[2].add(new Edge(2, 4));
+
+    //     // graph[3].add(new Edge(3, 1));
+    //     // //graph[3].add(new Edge(3, 4));
+
+    //     // graph[4].add(new Edge(4, 2));
+    //     //graph[4].add(new Edge(4, 3));
+
+
+    //     //CYCLEIN DIRECTED GRAPH
+    //     // graph[0].add(new Edge(0,2));
+
+    //     // graph[1].add(new Edge(1, 0));
+
+    //     // graph[2].add(new Edge(2, 3));
+
+    //     // graph[3].add(new Edge(3, 0));
+
+    //     // graph[0].add(new Edge(0,1));
+    //     // graph[0].add(new Edge(0,2));
+
+    //     // graph[1].add(new Edge(1, 3));
+
+    //     // graph[2].add(new Edge(2, 3));
+
+    //     // Topological Sort Question
+
+
+    //     // graph[2].add(new Edge(2, 3));
+
+    //     // graph[3].add(new Edge(3, 1));
+
+    //     // graph[4].add(new Edge(4, 0));
+    //     // graph[4].add(new Edge(4, 1));
+
+    //     // graph[5].add(new Edge(5, 0));
+    //     // graph[5].add(new Edge(5, 2));
+
+    //     // All paths sum question
+
+    //     // graph[0].add(new Edge(0, 3));
+
+    //     // graph[2].add(new Edge(2, 3));
+
+    //     // graph[3].add(new Edge(3, 1));
+
+    //     // graph[4].add(new Edge(4, 0));
+    //     // graph[4].add(new Edge(4, 1));
+
+    //     // graph[5].add(new Edge(5, 0));
+    //     // graph[5].add(new Edge(5, 2));
+
+    //     // Dijkstra's Algorithm
+
+    //     // graph[0].add(new Edge(0, 1, 2));
+    //     // graph[0].add(new Edge(0, 2, 4));
+
+    //     // graph[1].add(new Edge(1, 2, 1));
+    //     // graph[1].add(new Edge(1, 3, 7));
+
+    //     // graph[2].add(new Edge(2, 4, 3));
+
+    //     // graph[3].add(new Edge(3, 5, 1));
+
+    //     // graph[4].add(new Edge(4, 3, 2));
+    //     // graph[4].add(new Edge(4, 5, 5));
+
+    //     // Bellman Ford Algorithm
+
+    //     // graph[0].add(new Edge(0, 1, 2));
+    //     // graph[0].add(new Edge(0, 2, 4));
+
+    //     // graph[1].add(new Edge(1, 2, -4));
+        
+    //     // graph[2].add(new Edge(2, 3, 2));
+
+    //     // graph[3].add(new Edge(3, 4, 4));
+
+    //     // graph[4].add(new Edge(4, 1, -1));
+
+    //     // Prims Algorithm
+
+    //     graph[0].add(new Edge(0,1,10));
+    //     graph[0].add(new Edge(0,2,15));
+    //     graph[0].add(new Edge(0,3,30));
+
+    //     graph[1].add(new Edge(1,0,10));
+    //     graph[1].add(new Edge(1,3,40));
+
+    //     graph[2].add(new Edge(2,0,15));
+    //     graph[2].add(new Edge(2,3,50));
+
+    //     graph[3].add(new Edge(3, 1, 40));
+    //     graph[3].add(new Edge(3, 2, 50));
+
+
+    // graph[0].add(new Edge(0,1,1));
+    // graph[0].add(new Edge(0,2,2));
+    // graph[0].add(new Edge(0,3,3));
+    // graph[0].add(new Edge(0,4,4));
+
+    // graph[1].add(new Edge(1,0,1));
+    // graph[1].add(new Edge(1,2,5));
+    // graph[1].add(new Edge(1,4,7));
+
+    // graph[2].add(new Edge(2,0,2));
+    // graph[2].add(new Edge(2,2,5));
+    // graph[2].add(new Edge(2,3,6));
+
+    // graph[3].add(new Edge(3,0,3));
+    // graph[3].add(new Edge(3,2,6));
+
+    // graph[4].add(new Edge(4,0,4));
+    // graph[4].add(new Edge(4,1,7));
+
+
+
+
+
+
+
+    //  }
+
+    public static void createGraph(int cities[][], ArrayList<Edge>[] graph){
         for (int i = 0; i < graph.length; i++) {
             graph[i] = new ArrayList<>();
         }
 
-
-        //0-vertex
-
-        // graph[0].add(new Edge(0, 1, 1));
-        // graph[0].add(new Edge(0, 2, 1));
-
-        // //1 vertex
-        // graph[1].add(new Edge(1, 0, 1));
-        // graph[1].add(new Edge(1, 3, 2));
-
-        // //2nd vertex
-        // graph[2].add(new Edge(2, 0, 1));
-        // graph[2].add(new Edge(2, 4, 1));
-
-        // //3rd vertex
-        // graph[3].add(new Edge(3, 1, 1));
-        // graph[3].add(new Edge(3, 4, 1));
-        // graph[3].add(new Edge(3, 5, 1));
-
-
-        // //4th vertex
-        // graph[4].add(new Edge(4, 2, 1));
-        // graph[4].add(new Edge(4, 3, 1));
-        // graph[4].add(new Edge(4, 5, 1));
-
-
-        // graph[5].add(new Edge(5, 3, 1));
-        // graph[5].add(new Edge(5, 4, 1));
-        // graph[5].add(new Edge(5, 6, 1));
-
-        // graph[6].add(new Edge(6, 2, 1));
-
-        // graph[0].add(new Edge(0, 1));
-        // graph[0].add(new Edge(0, 2));
-        // graph[0].add(new Edge(0, 3));
-
-        // graph[1].add(new Edge(1, 0));
-        // graph[1].add(new Edge(1, 2));
-
-        // graph[2].add(new Edge(2, 0));
-        // graph[2].add(new Edge(2, 1));
-
-        // graph[3].add(new Edge(3, 0));
-        // graph[3].add(new Edge(3, 4));
-
-        // graph[4].add(new Edge(4, 3));
-
-        // graph[0].add(new Edge(0, 1));
-        // graph[0].add(new Edge(0, 2));
-
-        // graph[1].add(new Edge(1, 0));
-        // graph[1].add(new Edge(1, 3));
-
-        // graph[2].add(new Edge(2, 0));
-        // graph[2].add(new Edge(2, 4));
-
-        // graph[3].add(new Edge(3, 1));
-        // //graph[3].add(new Edge(3, 4));
-
-        // graph[4].add(new Edge(4, 2));
-        //graph[4].add(new Edge(4, 3));
-
-
-        //CYCLEIN DIRECTED GRAPH
-        // graph[0].add(new Edge(0,2));
-
-        // graph[1].add(new Edge(1, 0));
-
-        // graph[2].add(new Edge(2, 3));
-
-        // graph[3].add(new Edge(3, 0));
-
-        // graph[0].add(new Edge(0,1));
-        // graph[0].add(new Edge(0,2));
-
-        // graph[1].add(new Edge(1, 3));
-
-        // graph[2].add(new Edge(2, 3));
-
-        // Topological Sort Question
-
-
-        // graph[2].add(new Edge(2, 3));
-
-        // graph[3].add(new Edge(3, 1));
-
-        // graph[4].add(new Edge(4, 0));
-        // graph[4].add(new Edge(4, 1));
-
-        // graph[5].add(new Edge(5, 0));
-        // graph[5].add(new Edge(5, 2));
-
-        // All paths sum question
-
-        // graph[0].add(new Edge(0, 3));
-
-        // graph[2].add(new Edge(2, 3));
-
-        // graph[3].add(new Edge(3, 1));
-
-        // graph[4].add(new Edge(4, 0));
-        // graph[4].add(new Edge(4, 1));
-
-        // graph[5].add(new Edge(5, 0));
-        // graph[5].add(new Edge(5, 2));
-
-        // Dijkstra's Algorithm
-
-        // graph[0].add(new Edge(0, 1, 2));
-        // graph[0].add(new Edge(0, 2, 4));
-
-        // graph[1].add(new Edge(1, 2, 1));
-        // graph[1].add(new Edge(1, 3, 7));
-
-        // graph[2].add(new Edge(2, 4, 3));
-
-        // graph[3].add(new Edge(3, 5, 1));
-
-        // graph[4].add(new Edge(4, 3, 2));
-        // graph[4].add(new Edge(4, 5, 5));
-
-        // Bellman Ford Algorithm
-
-        // graph[0].add(new Edge(0, 1, 2));
-        // graph[0].add(new Edge(0, 2, 4));
-
-        // graph[1].add(new Edge(1, 2, -4));
-        
-        // graph[2].add(new Edge(2, 3, 2));
-
-        // graph[3].add(new Edge(3, 4, 4));
-
-        // graph[4].add(new Edge(4, 1, -1));
-
-        // Prims Algorithm
-
-        graph[0].add(new Edge(0,1,10));
-        graph[0].add(new Edge(0,2,15));
-        graph[0].add(new Edge(0,3,30));
-
-        graph[1].add(new Edge(1,0,10));
-        graph[1].add(new Edge(1,3,40));
-
-        graph[2].add(new Edge(2,0,15));
-        graph[2].add(new Edge(2,3,50));
-
-        graph[3].add(new Edge(3, 1, 40));
-        graph[3].add(new Edge(3, 2, 50));
-
+        for (int i = 0; i < cities.length; i++) {
+            for (int j = 0; j < cities[0].length; j++) {
+                if(cities[i][j] != 0){
+                    graph[i].add(new Edge(i, j, cities[i][j]));
+                }
+                
+            }
+        }
     }
 
 
@@ -570,6 +611,92 @@ public class graphB {
         System.out.println(finalCost);
     }
 
+    static class Info implements Comparable<Info>{
+        int n;
+        int wt;
+        int stops;
+
+        public Info(int n, int wt, int stops){
+            this.n= n;
+            this.stops = stops;
+            this.wt = wt;
+        }
+
+        @Override
+        public int compareTo(Info I2){
+            return this.stops - I2.stops;
+        }
+    }
+
+    public static  int cheapestFlight(int n, int graph[][], int src, int dest, int k){
+        PriorityQueue<Info> pq = new PriorityQueue<>();
+        int dist[] = new int[n];
+        boolean vis[] = new boolean[n];
+        
+        for (int i = 0; i < dist.length; i++) {
+            if(i != src){
+                dist[i] = Integer.MAX_VALUE;
+            }
+        }
+
+        pq.add(new Info(src, 0, 0));
+        while (!pq.isEmpty()) {
+            Info curr = pq.remove();
+            if(curr.stops > k){
+                break;
+            }
+                for (int i = 0; i < graph.length; i++) {
+                    if(graph[i][0] == curr.n){
+                        Edge e = new Edge(graph[i][0], graph[i][1], graph[i][2]);
+                        if(dist[e.src] != Integer.MAX_VALUE && e.wt + curr.wt < dist[e.dest] && curr.stops <= k){
+                            dist[e.dest] = e.wt + dist[e.src];
+                            pq.add(new Info(e.dest, dist[e.dest], curr.stops+1));
+                        }
+                        
+                    }
+                }
+
+
+           
+        }
+
+         if(dist[dest] == Integer.MAX_VALUE){
+                    return -1;
+                }else{
+                    return dist[dest];
+                }
+
+    }
+
+
+    public static int connectingCities(ArrayList<Edge>[] graph){
+
+        // createGraph(citites, graph);
+
+        PriorityQueue<Pair2> pq = new PriorityQueue<>();
+        boolean visited[] = new boolean[graph.length];
+
+        pq.add(new Pair2(0, 0));
+        int minimumCost = 0;
+        while (!pq.isEmpty()) {
+            Pair2 curr = pq.remove();
+            
+            if(!visited[curr.n]){
+                visited[curr.n] = true;
+                minimumCost += curr.cost;
+                for (int i = 0; i < graph[curr.n].size(); i++) {
+                    Edge e = graph[curr.n].get(i);
+                    
+                    pq.add(new Pair2(e.dest, e.wt));
+                }
+            }
+        }
+
+        return minimumCost;
+    }
+
+
+
 
     
     public static void main(String args[]){    
@@ -583,11 +710,11 @@ public class graphB {
         //     System.out.println(e.dest);
         // }
 
-       int V = 5;
+    //    int V = 5;
        
-       ArrayList<Edge>[] graph = new ArrayList[V];
+    //    ArrayList<Edge>[] graph = new ArrayList[V];
 
-       createGraph(graph);
+    //    createGraph(graph);
     //    dfs(graph, 0, new boolean[graph.length]);
 
     // System.out.println(hasPath(graph, 0, 10, new boolean[V]));    
@@ -602,7 +729,37 @@ public class graphB {
 
     //bellmanFord(graph, 0);
 
-    primsAlgo(graph);
+    //primsAlgo(graph);
+
+    // int n = 4;
+
+    // int arr[][] = {{0,1,100},
+    //                 {1,2,100},
+    //             {2,0,100},
+    //         {1,3,600},
+    //     {2,3,200}};
+
+
+            // System.out.println(cheapestFlight(n, arr, 0, 3, 1));
+
+            int cities[][] = {{0,1,2,3,4},
+                            {1,0,5,0,7},
+                        {2,5,0,6,0},
+                    {3,0,6,0,0},
+                {4,7,0,0,0}};
+
+                int v = 5;
+                
+            // ArrayList<Edge>[] graph = new ArrayList[v];
+            // createGraph(cities, graph);
+            //primsAlgo(graph);
+
+            ArrayList<Edge>[] graph = new ArrayList[v];
+
+             createGraph(cities,graph);
+             //primsAlgo(graph);
+
+            System.out.println(connectingCities(graph));
 
 
 
