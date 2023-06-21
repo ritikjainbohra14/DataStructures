@@ -123,6 +123,56 @@ public class dynamicProgramming {
         return dp[val.length][W];
     }
 
+    public static boolean targetSumSubset(int arr[], int sum){
+        int n = arr.length;
+        boolean dp[][] = new boolean[n+1][sum+1];
+    
+        for (int i = 0; i < dp.length; i++) {
+            dp[i][0] = true;
+        }
+
+        for (int i = 1; i <n+1; i++) {
+            for (int j = 1; j < sum+1; j++) {
+                int v = arr[i-1];
+
+                if(v<=j && dp[i-1][j-v]){
+                    dp[i][j] = true;
+                }
+                //exclude
+                else if(dp[i-1][j]){
+                    dp[i][j] = true;
+                }
+            }
+        }
+
+        return dp[n][sum];
+    }
+
+    public static int ubBoundedKnapsack(int val[], int wt[], int W, int dp[][]){
+        int n = val.length;
+
+        for (int i = 0; i < dp.length; i++) {
+            dp[i][0] = 0;
+        }
+
+        for (int i = 0; i < dp[0].length; i++) {
+            dp[0][i] = 0;
+        }
+
+        for (int i = 1; i < n+1; i++) {
+            for (int j = 1; j < W+1; j++) {
+                if(wt[i-1]<=j){
+                    dp[i][j] = Math.max(val[i-1] + dp[i][j-wt[i-1]], dp[i-1][j]);
+                }else{
+                    dp[i][j] = dp[i-1][j];
+                }
+                
+                
+            }
+        }
+
+        return dp[n][W];
+    }
 
     public static void main(String args[]){
         // int n = 5;
@@ -148,12 +198,18 @@ public class dynamicProgramming {
         int n = val.length;
         int dp[][] = new int[val.length+1][W+1];
 
-        for (int i = 0; i < dp.length; i++) {
-            for (int j = 0; j < dp[0].length; j++) {
-                dp[i][j] = -1;
-            }
-        }
+        // for (int i = 0; i < dp.length; i++) {
+        //     for (int j = 0; j < dp[0].length; j++) {
+        //         dp[i][j] = -1;
+        //     }
+        // }
 
-        System.out.println( knapsackTab(val, wt, W, dp));
+        //System.out.println( knapsackTab(val, wt, W, dp));
+        
+        // int num[] = {4,2,7,1,3};
+        // System.out.println(targetSumSubset(num, 10));
+
+        System.out.println(ubBoundedKnapsack(val, wt, W, dp));
+        
     }
 }
