@@ -1,4 +1,4 @@
-import java.util.Arrays;
+import java.util.*;
 
 public class dynamicProgramming {
 
@@ -174,6 +174,217 @@ public class dynamicProgramming {
         return dp[n][W];
     }
 
+    public static int rodCutting(int len[], int price[], int rodLength, int dp[][]){
+        int n = price.length;
+
+        for (int i = 0; i < n+1; i++) {
+            dp[i][0] = 0;
+        }
+
+        for (int i = 0; i < rodLength+1; i++) {
+            dp[0][i] = 0;
+        }
+
+        for (int i = 1; i < n+1; i++) {
+            for (int j = 1; j < rodLength+1; j++) {
+                if(len[i-1]<=j){
+                    dp[i][j] = Math.max(price[i-1] + dp[i][j-len[i-1]], dp[i-1][j]);
+                }else{
+                    dp[i][j] = dp[i-1][j];
+                }
+            }
+        }
+
+        return dp[n][rodLength];
+    }
+
+    public static int lcs(String str1, String str2, int n, int m){
+        int dp[][] = new int[n+1][m+1];
+
+        for (int i = 0; i < dp.length; i++) {
+            dp[i][0] = 0;
+        }
+
+        for (int i = 0; i < dp[0].length; i++) {
+            dp[0][i] = 0;
+        }
+        for (int i = 1; i < dp.length; i++) {
+            for (int j = 1; j < dp[0].length; j++) {
+                dp[i][j] = -1;
+            }
+        }
+
+        if(dp[n][m] != -1){
+            return dp[n][m];
+        }
+        if(n==0 || m==0){
+            return 0;
+        }
+
+        if(str1.charAt(n-1) == str2.charAt(m-1)){
+            dp[n][m] = lcs(str1, str2, n-1, m-1)+1;
+            return dp[n][m];
+        }else{
+            int ans1 = lcs(str1, str2, n-1, m);
+            int ans2 = lcs(str1, str2, n, m-1);
+
+            dp[n][m] = Math.max(ans1, ans2);
+
+            return dp[n][m];
+        }
+    }
+
+
+    public static int lcsTabulation(String str1, String str2, int n, int m){
+        int dp[][] = new int[n+1][m+1];
+
+        for (int i = 0; i < dp.length; i++) {
+            dp[i][0] = 0;
+        }
+
+        for (int i = 0; i < dp[0].length; i++) {
+            dp[0][i] = 0;
+        }
+
+        for (int i = 1; i < dp.length; i++) {
+            for (int j = 1; j < dp[0].length; j++) {
+                if(str1.charAt(i-1) == str2.charAt(j-1)){
+                    dp[i][j] = 1 + dp[i-1][j-1];
+                }else{
+                    int ans1 = dp[i-1][j];
+                    int ans2 = dp[i][j-1];
+
+                    dp[i][j] = Math.max(ans1,ans2);
+                }
+            }
+        }
+
+        return dp[n][m];
+    }
+
+    public static int longestSubstring(String str1, String str2){
+        int n = str1.length();
+        int m = str2.length();
+
+        int dp[][] = new int[n+1][m+1];
+
+        for (int i = 0; i < dp.length; i++) {
+            dp[i][0] = 0;
+        }
+
+        for (int i = 0; i < dp[0].length; i++) {
+            dp[0][i]  = 0;
+        }
+
+        int ans= 0; 
+        for (int i = 1; i < dp.length; i++) {
+            for (int j = 1; j < dp[0].length; j++) {
+                if(str1.charAt(i-1) == str2.charAt(j-1)){
+                    dp[i][j] = 1 + dp[i-1][j-1];
+                }else{
+                    dp[i][j] = 0;
+                }
+
+                ans = Math.max(ans, dp[i][j]);
+            }
+        }
+
+        return ans;
+    }
+
+    public static int lcs2(int arr1[], int arr2[]){
+        int n = arr1.length;
+        int m = arr2.length;
+
+        int dp[][] = new int[n+1][m+1];
+
+        for (int i = 0; i < dp.length; i++) {
+            dp[i][0] = 0;
+        }
+
+        for (int i = 0; i < dp[0].length; i++) {
+            dp[0][i] = 0;
+        }
+
+        //bottom up
+
+        for (int i = 1; i < dp.length; i++) {
+            for (int j = 1; j < dp[0].length; j++) {
+
+                if(arr1[i-1] == arr2[j-1]){
+                    dp[i][j] = 1 + dp[i-1][j-1];
+                }else{
+                    int ans1 = dp[i-1][j];
+                    int ans2 = dp[i][j-1];
+
+                    dp[i][j] = Math.max(ans1, ans2);
+                }
+                
+            }
+        }
+
+        return dp[n][m];
+    }
+
+    public static int lis(int arr[]){
+        HashSet<Integer> set = new HashSet<>();
+        for (int i = 0; i < arr.length; i++) {
+            set.add(arr[i]);
+        }
+
+        int arr2[] = new int[set.size()];
+
+        int i = 0;
+        for (int num : set) {
+           arr2[i] = num;
+           i++; 
+        }
+
+        Arrays.sort(arr2);
+
+        return lcs2(arr,arr2);
+    }
+
+    public static int editDistance(String word1, String word2){
+        int n = word1.length();
+        int m = word2.length();
+
+        int dp[][] = new int[n+1][m+1];
+
+        for (int i = 0; i < dp.length; i++) {
+            dp[i][0] = i;
+        }
+
+        for (int i = 0; i < dp[0].length; i++) {
+            dp[0][i] = i;
+        }
+
+        for (int i = 1; i < dp.length; i++) {
+            for (int j = 1; j < dp[0].length; j++) {
+                if(word1.charAt(i-1) == word2.charAt(j-1)){
+                    dp[i][j] = dp[i-1][j-1];
+                }else{
+                    int add = 1 + dp[i][j-1]; 
+                    int swap = 1 + dp[i-1][j-1];
+                    int delete = 1 + dp[i-1][j];
+                    
+                    dp[i][j] = Math.min(swap, Math.min(add, delete));
+                }
+            }
+        }
+
+        return dp[n][m];
+    }
+
+    public static int stringConversion(String word1, String word2){
+        int n = lcs(word1, word2, word1.length(), word2.length());
+
+        int x = word1.length() - n;
+        int y = word2.length() - n;
+
+        return x+y;
+    }
+
     public static void main(String args[]){
         // int n = 5;
         // int f[] = new int[n+1];
@@ -192,11 +403,11 @@ public class dynamicProgramming {
 
         //int a[] = {3,6,5,11};
 
-        int val[] = {15, 14, 10, 45, 30};
-        int wt[] = {2, 5, 1, 3, 4};
-        int W = 7;
-        int n = val.length;
-        int dp[][] = new int[val.length+1][W+1];
+        // int val[] = {15, 14, 10, 45, 30};
+        // int wt[] = {2, 5, 1, 3, 4};
+        // int W = 7;
+        // int n = val.length;
+        // int dp[][] = new int[val.length+1][W+1];
 
         // for (int i = 0; i < dp.length; i++) {
         //     for (int j = 0; j < dp[0].length; j++) {
@@ -209,7 +420,41 @@ public class dynamicProgramming {
         // int num[] = {4,2,7,1,3};
         // System.out.println(targetSumSubset(num, 10));
 
-        System.out.println(ubBoundedKnapsack(val, wt, W, dp));
         
+        //System.out.println(ubBoundedKnapsack(val, wt, W, dp));
+        
+        // int len[] = {1,2,3,4,5,6,7,8};
+        // int price[] = {1,5,8,9,10,17,17,20};
+
+        // int rodlength = 8;
+        // int dp[][] = new int[price.length+1][rodlength+1];
+
+        // System.out.println(rodCutting(len, price, rodlength, dp));
+
+        // String str1 = "abcdge";
+        // String str2 = "abedg";
+
+        // String str1 = "ABCDE";
+        // String str2 = "ABGCE";
+        
+        // int arr[] = {50, 3, 10, 7, 40, 80};
+
+        // System.out.println(lis(arr));
+
+        //System.out.println(lcs(str1, str2, str1.length(), str2.length()));
+
+        //System.out.println(lcsTabulation(str1, str2, str1.length(), str2.length()));
+
+        //System.out.println(longestSubstring(str1, str2));
+            
+
+        // String word1 = "intention";
+        // String word2 = "execution";
+
+        String word1 = "abc";
+        String word2 = "sbd";
+
+        System.out.println(editDistance(word1, word2));
     }
+
 }

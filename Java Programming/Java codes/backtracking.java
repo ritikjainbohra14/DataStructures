@@ -274,45 +274,42 @@ public class backtracking {
         // changearray(arr, 0, 1);
         // printarray(arr);
 
-        // int n=5;
-        // char board[][] = new char[n][n];
+        int n=5;
+        char board[][] = new char[n][n];
 
-    //     for (int i = 0; i < board.length; i++) {
-    //         for (int j = 0; j < board.length; j++) {
-    //             board[i][j] = '.';
-    //         }
-    //     }
+        for (int i = 0; i < board.length; i++) {
+            for (int j = 0; j < board.length; j++) {
+                board[i][j] = '.';
+            }
+        }
 
-    //     if(nqueens(board, 0)){
-    //         System.out.println("sol possible");
-    //         printboard(board);
-    //     }else{
-    //         System.out.println("sol is not possile");
-    //         printboard(board);
-    //     }
-    //     System.out.println(county);
-    // }
+        if(nqueens(board, 0)){
+            System.out.println("sol possible");
+            printboard(board);
+        }
+        //System.out.println(county);
+    }
     // int n=3 , m=3;
   
     // System.out.println(  gridways(0, 0, m, n));
 
-    int sudoku[][] = {{0,0,8,0,0,0,0,0,0},
-    {4,9,0,1,5,7,0,0,2},
-    {0,0,3,0,0,4,1,9,0},
-    {1,8,5,0,6,0,0,2,0},
-    {0,0,0,0,2,0,0,6,0},
-    {9,6,0,4,0,5,3,0,0},
-    {0,3,0,0,7,2,0,0,4},
-    {0,4,9,0,3,0,0,5,7},
-    {8,2,7,0,0,9,0,1,3}};
-    System.out.println(sudoku.length);
+    // int sudoku[][] = {{0,0,8,0,0,0,0,0,0},
+    // {4,9,0,1,5,7,0,0,2},
+    // {0,0,3,0,0,4,1,9,0},
+    // {1,8,5,0,6,0,0,2,0},
+    // {0,0,0,0,2,0,0,6,0},
+    // {9,6,0,4,0,5,3,0,0},
+    // {0,3,0,0,7,2,0,0,4},
+    // {0,4,9,0,3,0,0,5,7},
+    // {8,2,7,0,0,9,0,1,3}};
+    // System.out.println(sudoku.length);
 
-    if (sudokuSolver(sudoku, 0, 0)) {
-        System.out.println("solution exist");
-        printsuduko(sudoku);
-    }else{
-        System.out.println("solution does not exist");
-    }
+    // if (sudokuSolver(sudoku, 0, 0)) {
+    //     System.out.println("solution exist");
+    //     printsuduko(sudoku);
+    // }else{
+    //     System.out.println("solution does not exist");
+    // }
 
     // int sudoku[][] = { { 0, 0, 8, 0, 0, 0, 0, 0, 0 },
     //             { 4, 9, 0, 1, 5, 7, 0, 0, 2 },
@@ -330,4 +327,3 @@ public class backtracking {
     //         System.out.println("No solution");
     //     }
     }
-}
